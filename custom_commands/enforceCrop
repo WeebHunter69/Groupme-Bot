@@ -1,1 +1,21 @@
+var fun_command = true;
+var cmds = [issueCropWarning];
+
+var HTTPS = require('https');
+
+exports.modName = "issue warning";
+
+exports.checkCommands = function(dataHash, callback) {
+  cmds.some(function(cmd){
+    return cmd(dataHash.funMode, dataHash.request.text, callback);
+  });
+}
+
+exports.getCmdListDescription = function () {
+  var cmdArr = [
+    {cmd: "/issueWarning", desc: "gives someone a crop strike.", fun: true}
+  ];
+
+  return cmdArr;
+}
 
