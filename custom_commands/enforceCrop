@@ -1,3 +1,26 @@
+var mentions;
+var userMentions = [addMention, describeMention, editMention, removeMention];
+
+var db = require('../modules/db.js');
+var db_table = 'user_mentions';
+
+getAllMentions();
+exports.modName = "Custom Mentions";
+
+function getAllMentions() {
+  db.getAllDocuments(db_table, function(res){
+    mentions = res;
+  });
+}
+
+function addMentionToDB(mention, callback) {
+  db.addDoc(db_table, mention, callback);
+}
+
+function updateMentionDB(mention, updateJson, callback){
+  var findHash = {
+    "name": mention["name"]
+  };
 var fun_command = true;
 var cmds = [issueCropWarning];
 
